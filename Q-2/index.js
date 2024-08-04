@@ -75,9 +75,20 @@ function displayData(data) {
     const instructions = document.createElement("p");
     instructions.textContent = ele.strInstructions;
 
-    card.append(image, name, area, instructions);
+    const detailsBtn = document.createElement("button");
+    detailsBtn.textContent = "Details";
+
+    card.append(image, detailsBtn, name, area, instructions);
 
     container.append(card);
+
+    detailsBtn.addEventListener("click", () => {
+      const mealId = ele.idMeal;
+      getData(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`,
+        false
+      );
+    });
   });
   flag = true;
 }
